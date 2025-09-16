@@ -136,7 +136,7 @@ All colors MUST be HSL for consistency and theming.
   
   .glow::before {
     content: '';
-    @apply absolute inset-0 rounded-inherit opacity-0 transition-opacity duration-300;
+    @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300;
     background: var(--gradient-primary);
     filter: blur(20px);
     z-index: -1;
