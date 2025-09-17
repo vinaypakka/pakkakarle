@@ -45,10 +45,10 @@ const HomePage = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-            <Link to="/design">
+            <Link to="/auth">
               <Button className="btn-hero text-lg px-10 py-6 glow">
                 <Home className="w-5 h-5 mr-2" />
-                Design My Home
+                Start Designing
               </Button>
             </Link>
             <Link to="/workers">
@@ -130,7 +130,7 @@ const HomePage = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join thousands of homeowners who trust Pakka Karle for their home building and maintenance needs.
           </p>
-          <Link to="/design">
+          <Link to="/auth">
             <Button className="btn-hero text-lg px-12 py-6 glow">
               Start Your Journey <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
