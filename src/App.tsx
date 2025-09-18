@@ -12,6 +12,7 @@ import PrebuiltDesigns from "./pages/PrebuiltDesigns";
 import Design from "./pages/Design";
 import Workers from "./pages/Workers";
 import Services from "./pages/Services";
+import ServiceProviders from "./pages/ServiceProviders";
 import AIMode from "./pages/AIMode";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/design" element={<Design />} />
             <Route path="/workers" element={<Workers />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/service-providers" element={<ServiceProviders />} />
             <Route path="/ai-mode" element={<AIMode />} />
             <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

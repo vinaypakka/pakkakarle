@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Home, Users, Wrench, Brain, Calendar, CheckCircle, Star, Zap, Shield, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import heroImage from '@/assets/hero-home.jpg';
 import designIcon from '@/assets/design-icon.jpg';
 import workersIcon from '@/assets/workers-icon.jpg';
@@ -128,10 +129,12 @@ const Index = () => {
               <Users className="w-5 h-5 mr-2" />
               Book a Worker
             </Button>
-            <Button className="btn-secondary text-lg px-10 py-6">
-              <Wrench className="w-5 h-5 mr-2" />
-              Book Services
-            </Button>
+            <Link to="/service-providers">
+              <Button className="btn-secondary text-lg px-10 py-6">
+                <Wrench className="w-5 h-5 mr-2" />
+                Book Services
+              </Button>
+            </Link>
           </div>
         </div>
 
