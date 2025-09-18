@@ -11,6 +11,15 @@ import { toast } from 'sonner';
 const prebuiltDesigns = [
   {
     id: 1,
+    title: '1 BHK Apartment',
+    description: 'Compact and efficient 1-bedroom apartment with modern amenities',
+    category: 'Apartment',
+    thumbnail: '/assets/1bhk.jpg',
+    sketchupLink: 'https://app.sketchup.com/share/tc/asia/TfAyqln2STQ?stoken=-Fd2lTCZjblub_hJJBcHff6WXZViRNscll4lTb6X2n9cGeQ0oJ7qMwpc0ztY9xVs&source=web',
+    icon: Square,
+  },
+  {
+    id: 2,
     title: 'Modern Villa',
     description: 'Spacious 4-bedroom villa with contemporary design',
     category: 'Villa',
@@ -19,7 +28,7 @@ const prebuiltDesigns = [
     icon: Building,
   },
   {
-    id: 2,
+    id: 3,
     title: 'Cozy Cottage',
     description: '2-bedroom cottage perfect for small families',
     category: 'Cottage',
@@ -28,7 +37,7 @@ const prebuiltDesigns = [
     icon: Home,
   },
   {
-    id: 3,
+    id: 4,
     title: 'Urban Apartment',
     description: 'Modern 3-bedroom apartment design',
     category: 'Apartment',
@@ -37,7 +46,7 @@ const prebuiltDesigns = [
     icon: Square,
   },
   {
-    id: 4,
+    id: 5,
     title: 'Garden House',
     description: 'Beautiful house with integrated garden spaces',
     category: 'House',
@@ -129,10 +138,18 @@ const PrebuiltDesigns = () => {
                 onClick={() => handleDesignClick(design)}
               >
                 <CardHeader className="text-center">
-                  {/* Thumbnail placeholder */}
-                  <div className="w-full h-48 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg mb-4 flex items-center justify-center group-hover:from-primary/20 group-hover:to-accent/20 transition-all duration-300">
-                    <IconComponent className="w-16 h-16 text-primary/60" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* Thumbnail */}
+                  <div className="w-full h-48 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg mb-4 flex items-center justify-center group-hover:from-primary/20 group-hover:to-accent/20 transition-all duration-300 relative overflow-hidden">
+                    {design.thumbnail !== '/placeholder.svg' ? (
+                      <img 
+                        src={design.thumbnail} 
+                        alt={design.title}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    ) : (
+                      <IconComponent className="w-16 h-16 text-primary/60" />
+                    )}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
                       <Badge className="bg-primary text-primary-foreground">
                         <ExternalLink className="w-3 h-3 mr-1" />
                         Open in SketchUp
