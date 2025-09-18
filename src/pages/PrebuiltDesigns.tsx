@@ -23,7 +23,7 @@ const prebuiltDesigns = [
     title: '2 BHK Apartment',
     description: 'Spacious 2-bedroom apartment with modern layout and amenities',
     category: 'Apartment',
-    thumbnail: '/placeholder.svg', // Upload image for 2 BHK
+    thumbnail: '/assets/2bhk.jpg',
     sketchupLink: 'https://app.sketchup.com/share/tc/asia/TfAyqln2STQ?stoken=MAB2ISrES3Pn1o8-iUX3jP6WXZViRNscll4lTb6X2n9cGeQ0oJ7qMwpc0ztY9xVs&source=web',
     icon: Square,
   },
