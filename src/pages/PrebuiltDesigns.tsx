@@ -57,10 +57,10 @@ const prebuiltDesigns = [
   {
     id: 5,
     title: 'Garden House',
-    description: 'Beautiful house with integrated garden spaces',
+    description: 'Beautiful house with integrated garden spaces and modern design',
     category: 'House',
-    thumbnail: '/placeholder.svg',
-    sketchupLink: 'https://app.sketchup.com/placeholder4',
+    thumbnail: '/assets/garden-house.jpg',
+    sketchupLink: 'https://app.sketchup.com/share/tc/asia/tQk67AtcYYE?stoken=pNruJwg-7BlpjeB96NQp8T0dsI4qrhZLdigr3GxJJ49k97mLM9LuChONxVku-BOZ&source=web',
     icon: TreePine,
   },
 ];
