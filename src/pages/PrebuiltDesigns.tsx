@@ -29,12 +29,12 @@ const prebuiltDesigns = [
   },
   {
     id: 3,
-    title: 'Modern Villa',
-    description: 'Spacious 4-bedroom villa with contemporary design',
-    category: 'Villa',
-    thumbnail: '/placeholder.svg', // User will replace with actual images
-    sketchupLink: 'https://app.sketchup.com/placeholder1', // User will provide actual links
-    icon: Building,
+    title: '3 BHK Apartment',
+    description: 'Spacious 3-bedroom apartment with modern design and amenities',
+    category: 'Apartment',
+    thumbnail: '/assets/3bhk.jpg',
+    sketchupLink: 'https://app.sketchup.com/share/tc/asia/Afk9JrZPPuM?stoken=A8tBJIZXSELych_8eyl1Y0vbdYg1KA30LGq4Td0PiO8Gm2afNbiQRDVAhtDaAGtB&source=web',
+    icon: Square,
   },
   {
     id: 3,
