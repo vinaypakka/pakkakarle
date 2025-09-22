@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Brain, Zap, Target, Clock, CheckCircle, Star, Calendar, Users } from 'lucide-react';
 import Navigation from '@/components/Navigation';
+import { AIDesignChatbot } from '@/components/AIDesignChatbot';
 
 const AIMode = () => {
   const aiFeatures = [
@@ -272,6 +273,9 @@ const AIMode = () => {
           </Button>
         </div>
       </section>
+
+      {/* AI Design Chatbot */}
+      <AIDesignChatbot />
     </div>
   );
 };
