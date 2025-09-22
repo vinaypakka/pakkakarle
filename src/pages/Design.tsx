@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Home, MousePointer, Layers, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import designIcon from '@/assets/design-icon.jpg';
 
@@ -76,14 +77,18 @@ const Design = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-            <Button className="btn-hero text-lg px-10 py-6 glow">
-              <Play className="w-5 h-5 mr-2" />
-              Start Designing
-            </Button>
-            <Button className="btn-secondary text-lg px-10 py-6">
-              <Home className="w-5 h-5 mr-2" />
-              View Examples
-            </Button>
+            <Link to="/prebuilt-designs">
+              <Button className="btn-hero text-lg px-10 py-6 glow">
+                <Play className="w-5 h-5 mr-2" />
+                Start Designing
+              </Button>
+            </Link>
+            <Link to="/prebuilt-designs">
+              <Button className="btn-secondary text-lg px-10 py-6">
+                <Home className="w-5 h-5 mr-2" />
+                View Examples
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -174,9 +179,11 @@ const Design = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Button className="btn-hero text-lg px-12 py-6 glow">
-              Start Your Design <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+            <Link to="/prebuilt-designs">
+              <Button className="btn-hero text-lg px-12 py-6 glow">
+                Start Your Design <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
