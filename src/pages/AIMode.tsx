@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +7,7 @@ import Navigation from '@/components/Navigation';
 import { AIDesignChatbot } from '@/components/AIDesignChatbot';
 
 const AIMode = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const aiFeatures = [
     {
       icon: Target,
@@ -76,7 +77,10 @@ const AIMode = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-            <Button className="btn-hero text-lg px-10 py-6 glow">
+            <Button 
+              className="btn-hero text-lg px-10 py-6 glow"
+              onClick={() => setIsChatbotOpen(true)}
+            >
               <Brain className="w-5 h-5 mr-2" />
               Activate AI Mode
             </Button>
@@ -275,7 +279,10 @@ const AIMode = () => {
       </section>
 
       {/* AI Design Chatbot */}
-      <AIDesignChatbot />
+      <AIDesignChatbot 
+        isOpen={isChatbotOpen} 
+        onClose={() => setIsChatbotOpen(false)} 
+      />
     </div>
   );
 };

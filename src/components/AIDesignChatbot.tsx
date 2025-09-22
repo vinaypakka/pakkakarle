@@ -60,8 +60,12 @@ const suggestedPrompts = [
   'Design an outdoor garden space'
 ];
 
-export const AIDesignChatbot: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface AIDesignChatbotProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const AIDesignChatbot: React.FC<AIDesignChatbotProps> = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -161,52 +165,49 @@ export const AIDesignChatbot: React.FC = () => {
     }
   };
 
-  return (
-    <>
-      {/* Floating Chatbot Toggle */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Button
-          onClick={() => setIsOpen(!isOpen)}
-          className={cn(
-            "w-16 h-16 rounded-full shadow-lg transition-all duration-300 hover:scale-105",
-            "bg-gradient-primary text-white border-0",
-            isOpen && "bg-destructive hover:bg-destructive/90"
-          )}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
-        </Button>
-      </div>
+  if (!isOpen) return null;
 
-      {/* Chatbot Interface */}
-      {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 h-[600px] z-40 animate-scale-in">
-          <Card className="h-full flex flex-col glass-card border-primary/20 shadow-2xl">
-            {/* Header */}
-            <div className="p-4 border-b border-border bg-gradient-primary text-white rounded-t-lg">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                  <Sparkles className="w-4 h-4" />
+  return (
+    <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm animate-fade-in">
+      <div className="h-full flex flex-col">
+        {/* Fullscreen Chatbot Interface */}
+        <Card className="h-full flex flex-col glass-card border-primary/20 shadow-2xl rounded-none">
+          {/* Header */}
+          <div className="p-6 border-b border-border bg-gradient-primary text-white">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                  <Sparkles className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">AI Design Assistant</h3>
-                  <p className="text-xs text-white/80">Powered by Advanced AI</p>
+                  <h1 className="text-2xl font-bold">AI Design Assistant</h1>
+                  <p className="text-white/80">Powered by Advanced AI - Generate designs in real-time</p>
                 </div>
               </div>
+              <Button
+                onClick={onClose}
+                variant="ghost"
+                size="icon"
+                className="text-white hover:bg-white/20 w-10 h-10"
+              >
+                <X className="w-6 h-6" />
+              </Button>
             </div>
+          </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-6 max-w-4xl mx-auto w-full">
               {messages.map((message) => (
-                <div key={message.id} className={cn(
-                  "flex",
-                  message.type === 'user' ? "justify-end" : "justify-start"
+              <div key={message.id} className={cn(
+                "flex",
+                message.type === 'user' ? "justify-end" : "justify-start"
+              )}>
+                <div className={cn(
+                  "max-w-[70%] p-4 rounded-lg",
+                  message.type === 'user' 
+                    ? "bg-primary text-primary-foreground" 
+                    : "bg-muted text-foreground"
                 )}>
-                  <div className={cn(
-                    "max-w-[80%] p-3 rounded-lg",
-                    message.type === 'user' 
-                      ? "bg-primary text-primary-foreground" 
-                      : "bg-muted text-foreground"
-                  )}>
                     <div className="flex items-start space-x-2">
                       {message.type === 'ai' && (
                         <Bot className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
@@ -214,18 +215,18 @@ export const AIDesignChatbot: React.FC = () => {
                       <div className="flex-1">
                         <p className="text-sm">{message.content}</p>
                         
-                        {/* Design Iframe */}
-                        {message.designIframe && (
-                          <div className="mt-3 rounded-lg overflow-hidden border border-border">
-                            <iframe
-                              src={message.designIframe}
-                              className="w-full h-48"
-                              frameBorder="0"
-                              allowFullScreen
-                              title="AI Generated Design"
-                            />
-                          </div>
-                        )}
+                      {/* Design Iframe */}
+                      {message.designIframe && (
+                        <div className="mt-4 rounded-lg overflow-hidden border border-border">
+                          <iframe
+                            src={message.designIframe}
+                            className="w-full h-96"
+                            frameBorder="0"
+                            allowFullScreen
+                            title="AI Generated Design"
+                          />
+                        </div>
+                      )}
                       </div>
                       {message.type === 'user' && (
                         <User className="w-4 h-4 mt-0.5 text-primary-foreground flex-shrink-0" />
@@ -255,50 +256,49 @@ export const AIDesignChatbot: React.FC = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Suggested Prompts (shown when no messages) */}
-            {messages.length === 1 && (
-              <div className="px-4 pb-2">
-                <div className="text-xs text-muted-foreground mb-2">Try these suggestions:</div>
-                <div className="flex flex-wrap gap-1">
-                  {suggestedPrompts.slice(0, 3).map((prompt, index) => (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      size="sm"
-                      className="text-xs h-7"
-                      onClick={() => handleSuggestedPrompt(prompt)}
-                    >
-                      {prompt}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Input */}
-            <div className="p-4 border-t border-border">
-              <div className="flex space-x-2">
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Describe your dream space..."
-                  className="flex-1 px-3 py-2 text-sm border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  disabled={isTyping}
-                />
-                <Button
-                  onClick={handleSendMessage}
-                  disabled={!inputValue.trim() || isTyping}
-                  className="px-4 py-2"
-                >
-                  <Send className="w-4 h-4" />
-                </Button>
+          {/* Suggested Prompts (shown when no messages) */}
+          {messages.length === 1 && (
+            <div className="px-6 pb-4 max-w-4xl mx-auto w-full">
+              <div className="text-sm text-muted-foreground mb-4">Try these suggestions:</div>
+              <div className="flex flex-wrap gap-2">
+                {suggestedPrompts.map((prompt, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    size="sm"
+                    className="text-sm h-10"
+                    onClick={() => handleSuggestedPrompt(prompt)}
+                  >
+                    {prompt}
+                  </Button>
+                ))}
               </div>
             </div>
-          </Card>
-        </div>
-      )}
-    </>
+          )}
+
+          {/* Input */}
+          <div className="p-6 border-t border-border">
+            <div className="max-w-4xl mx-auto flex space-x-4">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Describe your dream space in detail... (e.g., 'Create a modern kitchen with white cabinets')"
+                className="flex-1 px-4 py-3 text-base border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                disabled={isTyping}
+              />
+              <Button
+                onClick={handleSendMessage}
+                disabled={!inputValue.trim() || isTyping}
+                className="px-6 py-3 text-base"
+              >
+                <Send className="w-5 h-5" />
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
   );
 };
