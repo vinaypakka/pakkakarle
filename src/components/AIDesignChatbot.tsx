@@ -42,7 +42,7 @@ const designMappings: DesignMapping[] = [
     keywords: ['bedroom', 'master bedroom', 'bedroom design'],
     title: 'Master Bedroom Retreat',
     description: 'A serene bedroom design focused on comfort and relaxation.',
-    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/u11111111-example-bedroom?token=example'
+    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/7387b8c6-c296-4298-9504-b0def92cdb4b?token=MNjUQbxueB8=&binaryName=s21'
   },
   {
     keywords: ['garden', 'outdoor space', 'patio', 'backyard'],
