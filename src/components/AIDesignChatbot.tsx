@@ -49,6 +49,12 @@ const designMappings: DesignMapping[] = [
     title: 'Garden Paradise',
     description: 'A beautiful outdoor space design perfect for entertaining and relaxation.',
     iframeSrc: 'https://3dwarehouse.sketchup.com/embed/u22222222-example-garden?token=example'
+  },
+  {
+    keywords: ['room', 'space', 'interior', 'design room', 'any room', 'general room'],
+    title: 'Beautiful Interior Space',
+    description: 'Here\'s a stunning interior design that showcases modern aesthetics and functionality.',
+    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/c3a47fac-7615-4c90-a15b-54513c745886?token=n-l3iMz1dHU=&binaryName=s21'
   }
 ];
 
