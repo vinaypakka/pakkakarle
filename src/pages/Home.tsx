@@ -5,20 +5,14 @@ import { ArrowRight, Home, Users, Wrench, Brain } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroImage from '@/assets/hero-home.jpg';
 import Navigation from '@/components/Navigation';
-
 const HomePage = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={heroImage} 
-            alt="Futuristic smart home concept" 
-            className="w-full h-full object-cover opacity-30"
-          />
+          <img src={heroImage} alt="Futuristic smart home concept" className="w-full h-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-hero" />
         </div>
         
@@ -52,10 +46,7 @@ const HomePage = () => {
               </Button>
             </Link>
             <Link to="/workers">
-              <Button className="btn-secondary text-lg px-10 py-6">
-                <Users className="w-5 h-5 mr-2" />
-                Book a Worker
-              </Button>
+              
             </Link>
             <Link to="/service-providers">
               <Button className="btn-secondary text-lg px-10 py-6">
@@ -72,7 +63,9 @@ const HomePage = () => {
             <Home className="w-8 h-8 text-primary" />
           </div>
         </div>
-        <div className="absolute bottom-20 right-10 animate-float" style={{ animationDelay: '1s' }}>
+        <div className="absolute bottom-20 right-10 animate-float" style={{
+        animationDelay: '1s'
+      }}>
           <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center">
             <Brain className="w-10 h-10 text-accent" />
           </div>
@@ -137,8 +130,6 @@ const HomePage = () => {
           </Link>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default HomePage;
