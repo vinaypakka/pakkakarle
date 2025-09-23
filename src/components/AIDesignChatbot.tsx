@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { MessageCircle, Send, X, Bot, User, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SubscriptionModal } from './SubscriptionModal';
 
 interface ChatMessage {
   id: string;
@@ -75,6 +76,8 @@ export const AIDesignChatbot: React.FC<AIDesignChatbotProps> = ({ isOpen, onClos
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [designCount, setDesignCount] = useState(0);
+  const [showSubscription, setShowSubscription] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -130,6 +133,9 @@ export const AIDesignChatbot: React.FC<AIDesignChatbotProps> = ({ isOpen, onClos
     const designMatch = findDesignMatch(inputValue);
     
     if (designMatch) {
+      const newDesignCount = designCount + 1;
+      setDesignCount(newDesignCount);
+      
       const aiResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
         type: 'ai',
@@ -139,16 +145,23 @@ export const AIDesignChatbot: React.FC<AIDesignChatbotProps> = ({ isOpen, onClos
       };
       setMessages(prev => [...prev, aiResponse]);
       
-      // Add follow-up message
-      setTimeout(() => {
-        const followUp: ChatMessage = {
-          id: (Date.now() + 2).toString(),
-          type: 'ai',
-          content: "What do you think? Would you like me to generate another design or modify this one?",
-          timestamp: new Date()
-        };
-        setMessages(prev => [...prev, followUp]);
-      }, 1000);
+      // Check if user has reached the limit
+      if (newDesignCount >= 2) {
+        setTimeout(() => {
+          setShowSubscription(true);
+        }, 2000);
+      } else {
+        // Add follow-up message
+        setTimeout(() => {
+          const followUp: ChatMessage = {
+            id: (Date.now() + 2).toString(),
+            type: 'ai',
+            content: "What do you think? Would you like me to generate another design or modify this one?",
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, followUp]);
+        }, 1000);
+      }
     } else {
       const aiResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
@@ -305,6 +318,11 @@ export const AIDesignChatbot: React.FC<AIDesignChatbotProps> = ({ isOpen, onClos
           </div>
         </Card>
       </div>
+      
+      <SubscriptionModal 
+        isOpen={showSubscription} 
+        onClose={() => setShowSubscription(false)} 
+      />
     </div>
   );
 };
