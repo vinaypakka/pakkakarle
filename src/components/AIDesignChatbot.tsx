@@ -24,7 +24,7 @@ const designMappings: DesignMapping[] = [
     keywords: ['kitchen', 'modern kitchen', 'contemporary kitchen', 'kitchen design'],
     title: 'Modern Kitchen Design',
     description: 'Here\'s a stunning modern kitchen design with sleek finishes and optimal functionality.',
-    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/u06c1b2e1-7a68-443c-b3d0-3bf45bb9327f?token=_7F7N8D1a_Y%3D&binaryName=s21'
+    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/b7c1ce71c20945eb605afa80919f9592?token=oMOuLOZ6tWU=&binaryName=s21'
   },
   {
     keywords: ['bathroom', 'modern bathroom', 'bathroom design', 'contemporary bathroom'],
