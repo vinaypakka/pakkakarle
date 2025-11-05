@@ -8,7 +8,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { Home, Mail, Lock, User } from 'lucide-react';
+import { Mail, Lock, User } from 'lucide-react';
+import pkLogo from '@/assets/pk-logo-filled.jpg';
 
 const AuthPage = () => {
   const [email, setEmail] = useState('');
@@ -80,8 +81,12 @@ const AuthPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background/95 to-primary/5 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-            <Home className="w-8 h-8 text-primary" />
+          <div className="inline-flex items-center justify-center w-20 h-20 mb-4">
+            <img 
+              src={pkLogo} 
+              alt="Pakka Karle Logo" 
+              className="w-full h-full object-contain rounded-lg"
+            />
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Pakka Karle
