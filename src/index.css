@@ -9,33 +9,33 @@ All colors MUST be HSL for consistency and theming.
 @layer base {
   :root {
     /* Background system */
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
 
     /* Card system */
-    --card: 224 71% 6%;
-    --card-foreground: 213 31% 91%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 0%;
 
     /* Popover system */
-    --popover: 224 71% 6%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
 
-    /* Primary brand - Deep tech blue */
-    --primary: 217 91% 60%;
+    /* Primary brand - Black */
+    --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 217 91% 70%;
+    --primary-glow: 0 0% 20%;
 
-    /* Secondary - Darker blue for depth */
-    --secondary: 221 39% 11%;
-    --secondary-foreground: 213 31% 91%;
+    /* Secondary - Light gray */
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 0%;
 
     /* Muted tones */
-    --muted: 215 27% 17%;
-    --muted-foreground: 217 10% 65%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
 
-    /* Accent - Vibrant cyan */
-    --accent: 189 100% 60%;
-    --accent-foreground: 224 71% 4%;
+    /* Accent - Dark gray */
+    --accent: 0 0% 30%;
+    --accent-foreground: 0 0% 100%;
 
     /* Success - Emerald green */
     --success: 142 76% 36%;
@@ -50,37 +50,37 @@ All colors MUST be HSL for consistency and theming.
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 215 27% 17%;
-    --input: 215 27% 17%;
-    --ring: 217 91% 60%;
+    --border: 0 0% 85%;
+    --input: 0 0% 95%;
+    --ring: 0 0% 0%;
 
     /* Design tokens */
     --radius: 0.75rem;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(189 100% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(224 71% 4%), hsl(221 39% 11%));
-    --gradient-hero: linear-gradient(135deg, hsl(224 71% 4%) 0%, hsl(221 39% 11%) 50%, hsl(217 91% 60% / 0.1) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(224 71% 6% / 0.8), hsl(215 27% 17% / 0.4));
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 30%));
+    --gradient-secondary: linear-gradient(135deg, hsl(0 0% 95%), hsl(0 0% 100%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 50%, hsl(0 0% 95%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 98% / 0.9), hsl(0 0% 95% / 0.6));
 
     /* Shadows */
-    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.3);
-    --shadow-card: 0 8px 32px hsl(224 71% 4% / 0.4);
-    --shadow-button: 0 4px 16px hsl(217 91% 60% / 0.3);
+    --shadow-glow: 0 0 40px hsl(0 0% 0% / 0.15);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.08);
+    --shadow-button: 0 4px 16px hsl(0 0% 0% / 0.15);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     /* Sidebar tokens (keeping for components) */
-    --sidebar-background: 224 71% 6%;
-    --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 217 91% 60%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 0 0% 0%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 27% 17%;
-    --sidebar-accent-foreground: 213 31% 91%;
-    --sidebar-border: 215 27% 17%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-accent: 0 0% 90%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 0 0% 0%;
   }
 }
 
@@ -90,7 +90,8 @@ All colors MUST be HSL for consistency and theming.
   }
 
   body {
-    @apply bg-background text-foreground font-inter antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Times New Roman', 'Libre Baskerville', serif;
     background: var(--gradient-hero);
     min-height: 100vh;
   }
@@ -104,7 +105,7 @@ All colors MUST be HSL for consistency and theming.
 @layer components {
   /* Hero button variant */
   .btn-hero {
-    @apply bg-gradient-to-r from-primary to-accent text-white font-semibold px-8 py-4 rounded-xl
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold px-8 py-4 rounded-xl
            shadow-[var(--shadow-button)] hover:shadow-[var(--shadow-glow)] 
            transition-all duration-300 hover:scale-105 active:scale-95;
   }
@@ -118,9 +119,9 @@ All colors MUST be HSL for consistency and theming.
 
   /* Glass card effect */
   .glass-card {
-    @apply bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl
-           border border-primary/10 rounded-2xl shadow-[var(--shadow-card)]
-           hover:border-primary/20 transition-all duration-300;
+    @apply bg-gradient-to-br from-card to-card/90 backdrop-blur-xl
+           border border-border rounded-2xl shadow-[var(--shadow-card)]
+           hover:border-primary/30 transition-all duration-300;
   }
 
   /* Animated background */
@@ -184,10 +185,10 @@ All colors MUST be HSL for consistency and theming.
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px hsl(217 91% 60% / 0.3);
+    box-shadow: 0 0 20px hsl(0 0% 0% / 0.15);
   }
   50% {
-    box-shadow: 0 0 40px hsl(217 91% 60% / 0.6);
+    box-shadow: 0 0 40px hsl(0 0% 0% / 0.25);
   }
 }
 
