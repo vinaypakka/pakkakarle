@@ -37,7 +37,7 @@ const prebuiltDesigns = [
     icon: Square,
   },
   {
-    id: 3,
+    id: 4,
     title: 'Cozy Cottage',
     description: '2-bedroom cottage perfect for small families',
     category: 'Cottage',
@@ -46,7 +46,7 @@ const prebuiltDesigns = [
     icon: Home,
   },
   {
-    id: 4,
+    id: 5,
     title: 'Urban Apartment',
     description: 'Modern 3-bedroom apartment design',
     category: 'Apartment',
@@ -55,7 +55,7 @@ const prebuiltDesigns = [
     icon: Square,
   },
   {
-    id: 5,
+    id: 6,
     title: 'Garden House',
     description: 'Beautiful house with integrated garden spaces and modern design',
     category: 'House',
