@@ -81,9 +81,11 @@ const Index = () => {
             <a href="#ai-mode" className="text-muted-foreground hover:text-primary transition-smooth">AI Mode</a>
             <a href="#booking" className="text-muted-foreground hover:text-primary transition-smooth">Booking</a>
           </div>
-          <Button className="btn-hero">
-            Get Started <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+          <Link to="/auth">
+            <Button className="btn-hero">
+              Get Started <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
         </div>
       </nav>
 
@@ -121,14 +123,18 @@ const Index = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-            <Button className="btn-hero text-lg px-10 py-6 glow">
-              <Home className="w-5 h-5 mr-2" />
-              Design My Home
-            </Button>
-            <Button className="btn-secondary text-lg px-10 py-6">
-              <Users className="w-5 h-5 mr-2" />
-              Book a Worker
-            </Button>
+            <Link to="/design">
+              <Button className="btn-hero text-lg px-10 py-6 glow">
+                <Home className="w-5 h-5 mr-2" />
+                Design My Home
+              </Button>
+            </Link>
+            <Link to="/workers">
+              <Button className="btn-secondary text-lg px-10 py-6">
+                <Users className="w-5 h-5 mr-2" />
+                Book a Worker
+              </Button>
+            </Link>
             <Link to="/service-providers">
               <Button className="btn-secondary text-lg px-10 py-6">
                 <Wrench className="w-5 h-5 mr-2" />
@@ -208,9 +214,11 @@ const Index = () => {
                     </p>
                     
                     {isActive && (
-                      <Button className="mt-6 btn-hero">
-                        Get Started <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                      <Link to="/design">
+                        <Button className="mt-6 btn-hero">
+                          Get Started <ArrowRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </Link>
                     )}
                   </CardContent>
                 </Card>
@@ -257,10 +265,12 @@ const Index = () => {
                 ))}
               </div>
               
-              <Button className="btn-hero text-lg">
-                <Brain className="w-5 h-5 mr-2" />
-                Try AI Mode
-              </Button>
+              <Link to="/ai-mode">
+                <Button className="btn-hero text-lg">
+                  <Brain className="w-5 h-5 mr-2" />
+                  Try AI Mode
+                </Button>
+              </Link>
             </div>
             
             <div className="relative">
@@ -357,9 +367,11 @@ const Index = () => {
                   ))}
                 </div>
                 
-                <Button className="w-full mt-8 btn-hero">
-                  Complete Booking <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                <Link to="/service-providers">
+                  <Button className="w-full mt-8 btn-hero">
+                    Complete Booking <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
             

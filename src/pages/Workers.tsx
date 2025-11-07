@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Users, Star, Shield, Clock, Hammer, Paintbrush, Wrench, HardHat } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import workersIcon from '@/assets/workers-icon.jpg';
 
@@ -94,14 +95,18 @@ const Workers = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-            <Button className="btn-hero text-lg px-10 py-6 glow">
-              <Users className="w-5 h-5 mr-2" />
-              Find Workers
-            </Button>
-            <Button className="btn-secondary text-lg px-10 py-6">
-              <Star className="w-5 h-5 mr-2" />
-              View Reviews
-            </Button>
+            <Link to="/service-providers">
+              <Button className="btn-hero text-lg px-10 py-6 glow">
+                <Users className="w-5 h-5 mr-2" />
+                Find Workers
+              </Button>
+            </Link>
+            <Link to="/service-providers">
+              <Button className="btn-secondary text-lg px-10 py-6">
+                <Star className="w-5 h-5 mr-2" />
+                View Reviews
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -162,9 +167,11 @@ const Workers = () => {
                       </div>
                     </div>
                     
-                    <Button className="w-full btn-hero">
-                      Book {category.title} <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                    <Link to="/service-providers">
+                      <Button className="w-full btn-hero">
+                        Book {category.title} <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               );
@@ -215,9 +222,11 @@ const Workers = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Connect with skilled professionals today and get your construction project moving.
           </p>
-          <Button className="btn-hero text-lg px-12 py-6 glow">
-            Book Workers Now <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
+          <Link to="/service-providers">
+            <Button className="btn-hero text-lg px-12 py-6 glow">
+              Book Workers Now <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Link>
         </div>
       </section>
     </div>

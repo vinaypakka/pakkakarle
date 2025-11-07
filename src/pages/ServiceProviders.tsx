@@ -170,9 +170,11 @@ const ServiceProviders = () => {
           <p className="text-muted-foreground mb-6 max-w-md mx-auto">
             Can't find what you're looking for? Contact us for specialized services and custom requirements.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90">
-            Request Custom Service
-          </Button>
+          <a href="tel:+1234567890">
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
+              Request Custom Service
+            </Button>
+          </a>
         </div>
       </div>
     </div>

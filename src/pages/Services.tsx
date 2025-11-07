@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Wrench, Zap, Droplets, Truck, Brush, Wifi, Phone, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import servicesIcon from '@/assets/services-icon.jpg';
 
@@ -105,14 +106,18 @@ const Services = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-            <Button className="btn-hero text-lg px-10 py-6 glow">
-              <Wrench className="w-5 h-5 mr-2" />
-              Book Service
-            </Button>
-            <Button className="btn-secondary text-lg px-10 py-6">
-              <Phone className="w-5 h-5 mr-2" />
-              Emergency Call
-            </Button>
+            <Link to="/service-providers">
+              <Button className="btn-hero text-lg px-10 py-6 glow">
+                <Wrench className="w-5 h-5 mr-2" />
+                Book Service
+              </Button>
+            </Link>
+            <Link to="/service-providers">
+              <Button className="btn-secondary text-lg px-10 py-6">
+                <Phone className="w-5 h-5 mr-2" />
+                Emergency Call
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -218,9 +223,11 @@ const Services = () => {
                       <div className="text-sm text-muted-foreground">
                         Duration: {category.duration}
                       </div>
-                      <Button className="btn-hero">
-                        Book Now <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                      <Link to="/service-providers">
+                        <Button className="btn-hero">
+                          Book Now <ArrowRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -242,13 +249,17 @@ const Services = () => {
             Book any service instantly or schedule for later. Our professionals are ready to help.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button className="btn-hero text-lg px-12 py-6 glow">
-              Book Instant Service <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-            <Button className="btn-secondary text-lg px-12 py-6">
-              <Calendar className="w-5 h-5 mr-2" />
-              Schedule for Later  
-            </Button>
+            <Link to="/service-providers">
+              <Button className="btn-hero text-lg px-12 py-6 glow">
+                Book Instant Service <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+            <Link to="/service-providers">
+              <Button className="btn-secondary text-lg px-12 py-6">
+                <Calendar className="w-5 h-5 mr-2" />
+                Schedule for Later  
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
