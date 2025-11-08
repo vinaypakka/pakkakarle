@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useAuth } from '@/contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import { Home, ArrowLeft, ExternalLink, Palette, Square, Building, TreePine } from 'lucide-react';
+import { Home, ArrowLeft, ExternalLink, Palette, Square, Building, TreePine, ShoppingCart } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Placeholder designs - user will replace these with actual data
+// Product data with affiliate links
+const products = [
+  { id: 1, name: 'Samsung 5-Door Flex Refrigerator', brand: 'Samsung', category: 'Kitchen', price: '$2,799', link: 'https://amazon.com' },
+  { id: 2, name: 'LG 65" OLED C3 Series TV', brand: 'LG', category: 'Living Room', price: '$1,799', link: 'https://amazon.com' },
+  { id: 3, name: 'IKEA MALM Bed Frame', brand: 'IKEA', category: 'Bedroom', price: '$199', link: 'https://ikea.com' },
+  { id: 4, name: 'Bosch Serie 6 Dishwasher', brand: 'Bosch', category: 'Kitchen', price: '$849', link: 'https://amazon.com' },
+  { id: 5, name: 'Dyson V15 Detect Vacuum', brand: 'Dyson', category: 'Home Appliances', price: '$649', link: 'https://amazon.com' },
+  { id: 6, name: 'Herman Miller Aeron Chair', brand: 'Herman Miller', category: 'Office', price: '$1,395', link: 'https://amazon.com' },
+  { id: 7, name: 'Whirlpool Front Load Washer', brand: 'Whirlpool', category: 'Laundry', price: '$899', link: 'https://amazon.com' },
+  { id: 8, name: 'KitchenAid Stand Mixer', brand: 'KitchenAid', category: 'Kitchen', price: '$429', link: 'https://amazon.com' },
+  { id: 9, name: 'Philips Hue Smart Lighting Kit', brand: 'Philips', category: 'Lighting', price: '$199', link: 'https://amazon.com' },
+  { id: 10, name: 'West Elm Mid-Century Sofa', brand: 'West Elm', category: 'Living Room', price: '$1,899', link: 'https://westelm.com' },
+  { id: 11, name: 'Nest Learning Thermostat', brand: 'Nest', category: 'Smart Home', price: '$249', link: 'https://amazon.com' },
+  { id: 12, name: 'Sony HT-A7000 Soundbar', brand: 'Sony', category: 'Entertainment', price: '$1,299', link: 'https://amazon.com' },
+  { id: 13, name: 'Tempur-Pedic Mattress', brand: 'Tempur-Pedic', category: 'Bedroom', price: '$2,199', link: 'https://amazon.com' },
+  { id: 14, name: 'Breville Barista Express', brand: 'Breville', category: 'Kitchen', price: '$699', link: 'https://amazon.com' },
+  { id: 15, name: 'Crate & Barrel Dining Set', brand: 'Crate & Barrel', category: 'Dining', price: '$1,499', link: 'https://crateandbarrel.com' },
+  { id: 16, name: 'GE Profile Smart Oven', brand: 'GE', category: 'Kitchen', price: '$3,299', link: 'https://amazon.com' },
+  { id: 17, name: 'Ashley Furniture Sectional', brand: 'Ashley', category: 'Living Room', price: '$1,299', link: 'https://ashleyfurniture.com' },
+  { id: 18, name: 'Pottery Barn Bed Frame', brand: 'Pottery Barn', category: 'Bedroom', price: '$1,699', link: 'https://potterybarn.com' },
+  { id: 19, name: 'Shark Robot Vacuum', brand: 'Shark', category: 'Home Appliances', price: '$449', link: 'https://amazon.com' },
+  { id: 20, name: 'Miele Complete C3 Vacuum', brand: 'Miele', category: 'Home Appliances', price: '$1,199', link: 'https://amazon.com' },
+];
+
+// Placeholder designs with associated products
 const prebuiltDesigns = [
   {
     id: 1,
@@ -17,6 +42,7 @@ const prebuiltDesigns = [
     thumbnail: '/assets/1bhk.jpg',
     sketchupLink: 'https://app.sketchup.com/share/tc/asia/TfAyqln2STQ?stoken=-Fd2lTCZjblub_hJJBcHff6WXZViRNscll4lTb6X2n9cGeQ0oJ7qMwpc0ztY9xVs&source=web',
     icon: Square,
+    productIds: [1, 2, 3, 4, 9, 11, 14],
   },
   {
     id: 2,
@@ -26,6 +52,7 @@ const prebuiltDesigns = [
     thumbnail: '/assets/2bhk.jpg',
     sketchupLink: 'https://app.sketchup.com/share/tc/asia/TfAyqln2STQ?stoken=MAB2ISrES3Pn1o8-iUX3jP6WXZViRNscll4lTb6X2n9cGeQ0oJ7qMwpc0ztY9xVs&source=web',
     icon: Square,
+    productIds: [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 15],
   },
   {
     id: 3,
@@ -35,6 +62,7 @@ const prebuiltDesigns = [
     thumbnail: '/assets/3bhk.jpg',
     sketchupLink: 'https://app.sketchup.com/share/tc/asia/Afk9JrZPPuM?stoken=A8tBJIZXSELych_8eyl1Y0vbdYg1KA30LGq4Td0PiO8Gm2afNbiQRDVAhtDaAGtB&source=web',
     icon: Square,
+    productIds: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 16, 18],
   },
   {
     id: 4,
@@ -44,6 +72,7 @@ const prebuiltDesigns = [
     thumbnail: '/placeholder.svg',
     sketchupLink: 'https://app.sketchup.com/placeholder2',
     icon: Home,
+    productIds: [3, 8, 9, 13, 14, 18],
   },
   {
     id: 5,
@@ -53,6 +82,7 @@ const prebuiltDesigns = [
     thumbnail: '/placeholder.svg',
     sketchupLink: 'https://app.sketchup.com/placeholder3',
     icon: Square,
+    productIds: [1, 2, 6, 10, 11, 12, 15, 17],
   },
   {
     id: 6,
@@ -62,16 +92,33 @@ const prebuiltDesigns = [
     thumbnail: '/assets/garden-house.jpg',
     sketchupLink: 'https://app.sketchup.com/share/tc/asia/tQk67AtcYYE?stoken=pNruJwg-7BlpjeB96NQp8T0dsI4qrhZLdigr3GxJJ49k97mLM9LuChONxVku-BOZ&source=web',
     icon: TreePine,
+    productIds: [1, 2, 3, 5, 8, 9, 10, 11, 13, 14, 15, 16, 18, 19],
   },
 ];
 
 const PrebuiltDesigns = () => {
   const { user } = useAuth();
+  const [selectedDesign, setSelectedDesign] = useState<typeof prebuiltDesigns[0] | null>(null);
+  const [showProductsDialog, setShowProductsDialog] = useState(false);
+  const [showDisclaimerDialog, setShowDisclaimerDialog] = useState(false);
 
   const handleDesignClick = (design: typeof prebuiltDesigns[0]) => {
     toast.success(`Opening ${design.title} in SketchUp...`);
-    // Open SketchUp link in new tab
     window.open(design.sketchupLink, '_blank');
+  };
+
+  const handleViewProducts = (design: typeof prebuiltDesigns[0]) => {
+    setSelectedDesign(design);
+    setShowProductsDialog(true);
+  };
+
+  const handleProductClick = () => {
+    setShowProductsDialog(false);
+    setShowDisclaimerDialog(true);
+  };
+
+  const getDesignProducts = (design: typeof prebuiltDesigns[0]) => {
+    return products.filter(p => design.productIds.includes(p.id));
   };
 
   if (!user) {
@@ -173,10 +220,21 @@ const PrebuiltDesigns = () => {
                     {design.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-2">
                   <Button className="w-full btn-hero group-hover:glow">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Open in SketchUp
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleViewProducts(design);
+                    }}
+                  >
+                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    Shop Products ({design.productIds.length})
                   </Button>
                 </CardContent>
               </Card>
@@ -206,6 +264,75 @@ const PrebuiltDesigns = () => {
           </div>
         </div>
       </main>
+
+      {/* Products Dialog */}
+      <Dialog open={showProductsDialog} onOpenChange={setShowProductsDialog}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Shop Products for {selectedDesign?.title}</DialogTitle>
+            <DialogDescription>
+              Browse and purchase products used in this design
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid md:grid-cols-2 gap-4 mt-4">
+            {selectedDesign && getDesignProducts(selectedDesign).map((product) => (
+              <Card key={product.id} className="hover:border-primary/40 transition-all">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="text-base">{product.name}</CardTitle>
+                      <CardDescription>{product.brand}</CardDescription>
+                    </div>
+                    <Badge variant="secondary">{product.category}</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex justify-between items-center">
+                    <span className="text-2xl font-bold text-primary">{product.price}</span>
+                    <Button 
+                      onClick={handleProductClick}
+                      className="btn-hero"
+                    >
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Buy Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Disclaimer Dialog */}
+      <Dialog open={showDisclaimerDialog} onOpenChange={setShowDisclaimerDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <ShoppingCart className="w-5 h-5" />
+              Prototype Notice
+            </DialogTitle>
+            <DialogDescription className="space-y-3 pt-4">
+              <p className="text-base font-medium text-foreground">
+                This platform is a prototype showcase only.
+              </p>
+              <p>
+                The products and purchase functionality displayed here are for demonstration purposes. 
+                This is not a real e-commerce platform and no actual transactions can be completed.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                This showcase demonstrates the concept of integrating product recommendations 
+                with home design visualization.
+              </p>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-end gap-3 mt-4">
+            <Button variant="outline" onClick={() => setShowDisclaimerDialog(false)}>
+              Close
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
