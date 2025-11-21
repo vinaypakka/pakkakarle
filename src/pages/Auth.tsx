@@ -7,42 +7,72 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Checkbox } from '@/components/ui/checkbox';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
-import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, User, Eye, EyeOff, Phone } from 'lucide-react';
 import pkLogo from '@/assets/pk-logo-filled.jpg';
 
 const AuthPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   const [showSignInPassword, setShowSignInPassword] = useState(false);
   const [showSignUpPassword, setShowSignUpPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const role = searchParams.get('role'); // 'customer' or 'partner'
 
   useEffect(() => {
     if (user) {
-      navigate('/dashboard');
+      // Check if user has a profile and redirect accordingly
+      const checkProfile = async () => {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', user.id)
+          .single();
+        
+        if (profile?.role === 'partner') {
+          navigate('/dashboard');
+        } else if (profile?.role === 'customer') {
+          navigate('/find-service');
+        } else {
+          navigate('/dashboard');
+        }
+      };
+      checkProfile();
     }
   }, [user, navigate]);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!role) {
+      toast.error('Please select customer or partner from the landing page');
+      navigate('/signup-landing');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const redirectUrl = `${window.location.origin}/dashboard`;
+      const redirectUrl = role === 'partner' 
+        ? `${window.location.origin}/partner-onboarding`
+        : `${window.location.origin}/find-service`;
       
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           emailRedirectTo: redirectUrl,
           data: {
+            role: role,
             full_name: fullName,
+            phone: phone,
           },
         },
       });
@@ -50,7 +80,13 @@ const AuthPage = () => {
       if (error) {
         toast.error(error.message);
       } else {
-        toast.success('Check your email for the confirmation link!');
+        toast.success('Account created successfully!');
+        // Redirect based on role
+        if (role === 'partner') {
+          navigate('/partner-onboarding');
+        } else {
+          navigate('/find-service');
+        }
       }
     } catch (error) {
       toast.error('An error occurred during sign up');
@@ -64,15 +100,28 @@ const AuthPage = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) {
         toast.error(error.message);
-      } else {
-        navigate('/dashboard');
+      } else if (data.user) {
+        // Fetch user profile to determine redirect
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.user.id)
+          .single();
+        
+        if (profile?.role === 'customer') {
+          navigate('/find-service');
+        } else if (profile?.role === 'partner') {
+          navigate('/dashboard');
+        } else {
+          navigate('/dashboard');
+        }
       }
     } catch (error) {
       toast.error('An error occurred during sign in');
@@ -102,13 +151,15 @@ const AuthPage = () => {
 
         <Card className="glass-card border-primary/20">
           <CardHeader>
-            <CardTitle className="text-center">Welcome</CardTitle>
+            <CardTitle className="text-center">
+              {role === 'customer' ? 'Customer Sign Up' : role === 'partner' ? 'Partner Sign Up' : 'Welcome'}
+            </CardTitle>
             <CardDescription className="text-center">
-              Sign in to your account or create a new one to get started
+              {role ? `Create your ${role} account or sign in` : 'Sign in to your account'}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="signin" className="w-full">
+            <Tabs defaultValue={role ? "signup" : "signin"} className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-6">
                 <TabsTrigger value="signin">Sign In</TabsTrigger>
                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
@@ -201,6 +252,23 @@ const AuthPage = () => {
                       className="bg-background/50"
                     />
                   </div>
+                  {role === 'partner' && (
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="flex items-center gap-2">
+                        <Phone className="w-4 h-4" />
+                        Phone Number
+                      </Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                        className="bg-background/50"
+                      />
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <Label htmlFor="signupEmail" className="flex items-center gap-2">
                       <Mail className="w-4 h-4" />

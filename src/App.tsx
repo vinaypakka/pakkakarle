@@ -7,6 +7,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
+import SignupLanding from "./pages/SignupLanding";
+import PartnerOnboarding from "./pages/PartnerOnboarding";
+import FindService from "./pages/FindService";
 import Dashboard from "./pages/Dashboard";
 import PrebuiltDesigns from "./pages/PrebuiltDesigns";
 import Design from "./pages/Design";
@@ -28,7 +31,18 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/signup-landing" element={<SignupLanding />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/partner-onboarding" element={
+              <ProtectedRoute>
+                <PartnerOnboarding />
+              </ProtectedRoute>
+            } />
+            <Route path="/find-service" element={
+              <ProtectedRoute>
+                <FindService />
+              </ProtectedRoute>
+            } />
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
