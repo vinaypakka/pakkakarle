@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -55,7 +58,7 @@ All colors MUST be HSL for consistency and theming.
     --ring: 0 0% 0%;
 
     /* Design tokens */
-    --radius: 0.75rem;
+    --radius: 3rem;
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 30%));
@@ -81,6 +84,15 @@ All colors MUST be HSL for consistency and theming.
     --sidebar-accent-foreground: 0 0% 0%;
     --sidebar-border: 0 0% 85%;
     --sidebar-ring: 0 0% 0%;
+    --font-sans: Roboto, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, Times New Roman, Times, serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+  .dark {
+    --font-sans: Roboto, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, Times New Roman, Times, serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    --radius: 3rem;
   }
 }
 
@@ -134,7 +146,7 @@ All colors MUST be HSL for consistency and theming.
   .glow {
     @apply relative;
   }
-  
+
   .glow::before {
     content: '';
     @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300;
@@ -142,7 +154,7 @@ All colors MUST be HSL for consistency and theming.
     filter: blur(20px);
     z-index: -1;
   }
-  
+
   .glow:hover::before {
     @apply opacity-30;
   }
@@ -198,4 +210,16 @@ All colors MUST be HSL for consistency and theming.
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ---break---
+*/
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
