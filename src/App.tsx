@@ -19,6 +19,9 @@ import ServiceProviders from "./pages/ServiceProviders";
 import AIMode from "./pages/AIMode";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import Properties from "./pages/Properties";
+import ListProperty from "./pages/ListProperty";
+import PropertyDetails from "./pages/PropertyDetails";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +62,13 @@ const App = () => (
             <Route path="/service-providers" element={<ServiceProviders />} />
             <Route path="/ai-mode" element={<AIMode />} />
             <Route path="/about" element={<About />} />
+            <Route path="/properties" element={<Properties />} />
+            <Route path="/list-property" element={
+              <ProtectedRoute>
+                <ListProperty />
+              </ProtectedRoute>
+            } />
+            <Route path="/property/:id" element={<PropertyDetails />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

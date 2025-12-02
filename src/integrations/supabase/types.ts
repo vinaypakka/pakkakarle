@@ -53,6 +53,93 @@ export type Database = {
         }
         Relationships: []
       }
+      properties: {
+        Row: {
+          amenities: string[] | null
+          area_sqft: number | null
+          bhk: string | null
+          city: string
+          contact_email: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          images: string[] | null
+          is_featured: boolean | null
+          is_verified: boolean | null
+          latitude: number | null
+          listing_type: string
+          location: string
+          longitude: number | null
+          pincode: string | null
+          price: number
+          property_type: string
+          state: string
+          status: string | null
+          title: string
+          updated_at: string | null
+          user_id: string
+          views_count: number | null
+        }
+        Insert: {
+          amenities?: string[] | null
+          area_sqft?: number | null
+          bhk?: string | null
+          city: string
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          images?: string[] | null
+          is_featured?: boolean | null
+          is_verified?: boolean | null
+          latitude?: number | null
+          listing_type: string
+          location: string
+          longitude?: number | null
+          pincode?: string | null
+          price: number
+          property_type: string
+          state: string
+          status?: string | null
+          title: string
+          updated_at?: string | null
+          user_id: string
+          views_count?: number | null
+        }
+        Update: {
+          amenities?: string[] | null
+          area_sqft?: number | null
+          bhk?: string | null
+          city?: string
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          images?: string[] | null
+          is_featured?: boolean | null
+          is_verified?: boolean | null
+          latitude?: number | null
+          listing_type?: string
+          location?: string
+          longitude?: number | null
+          pincode?: string | null
+          price?: number
+          property_type?: string
+          state?: string
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+          user_id?: string
+          views_count?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
