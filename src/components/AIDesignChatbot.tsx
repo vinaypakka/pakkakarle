@@ -22,6 +22,30 @@ interface DesignMapping {
 
 const designMappings: DesignMapping[] = [
   {
+    keywords: ['2 bhk', '2bhk', 'luxury 2 bhk', 'best 2 bhk', 'two bhk', '2 bedroom house', 'luxury house'],
+    title: 'Best 2 BHK House Luxury',
+    description: 'Here\'s a stunning luxury 2 BHK house design with premium finishes and spacious layouts.',
+    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/faaabeb8-3aaf-4929-933f-b4b8073b6724?token=sa5o9Ja-Slk=&binaryName=s21'
+  },
+  {
+    keywords: ['1 bhk', '1bhk', 'one bhk', '1 bedroom house', 'small house', 'compact house', 'starter home'],
+    title: '1 BHK House',
+    description: 'A well-designed 1 BHK house perfect for singles or couples, maximizing space efficiency.',
+    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/c1891613-3e56-4f10-978d-cdb77290b78a?token=sYOhTbSYnPc=&binaryName=s21'
+  },
+  {
+    keywords: ['master house', 'master plan', 'main house', 'large house', 'big house', 'premium house', 'full house plan'],
+    title: 'Master House Plan',
+    description: 'A comprehensive master house plan with all essential spaces beautifully designed.',
+    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/1d52aa37-d431-4157-905c-7dcfa61a3040?token=FobliZe_7m0=&binaryName=s21'
+  },
+  {
+    keywords: ['normal house', 'simple house', 'basic house', 'regular house', 'standard house', 'home design'],
+    title: 'Normal House Design',
+    description: 'A practical and comfortable normal house design suitable for everyday living.',
+    iframeSrc: 'https://3dwarehouse.sketchup.com/embed/3f46e53b-523d-4811-88fe-859ffe96bea6?token=LnyLE4Gdq9g=&binaryName=s21'
+  },
+  {
     keywords: ['kitchen', 'modern kitchen', 'contemporary kitchen', 'kitchen design'],
     title: 'Modern Kitchen Design',
     description: 'Here\'s a stunning modern kitchen design with sleek finishes and optimal functionality.',
@@ -52,7 +76,7 @@ const designMappings: DesignMapping[] = [
     iframeSrc: 'https://3dwarehouse.sketchup.com/embed/u22222222-example-garden?token=example'
   },
   {
-    keywords: ['room', 'space', 'interior', 'design room', 'any room', 'general room'],
+    keywords: ['room', 'space', 'interior', 'design room', 'any room', 'general room', 'house'],
     title: 'Beautiful Interior Space',
     description: 'Here\'s a stunning interior design that showcases modern aesthetics and functionality.',
     iframeSrc: 'https://3dwarehouse.sketchup.com/embed/c3a47fac-7615-4c90-a15b-54513c745886?token=n-l3iMz1dHU=&binaryName=s21'
@@ -60,11 +84,11 @@ const designMappings: DesignMapping[] = [
 ];
 
 const suggestedPrompts = [
-  'Create a modern kitchen',
-  'Design a luxury bathroom',
-  'Show me a contemporary living room',
-  'Generate a cozy bedroom',
-  'Design an outdoor garden space'
+  'Show me a luxury 2 BHK house',
+  'Design a 1 BHK house',
+  'Create a master house plan',
+  'Show me a normal house design',
+  'Create a modern kitchen'
 ];
 
 interface AIDesignChatbotProps {
