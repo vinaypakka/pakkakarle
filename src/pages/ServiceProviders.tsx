@@ -2,14 +2,26 @@ import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, Clock, User, DollarSign, Phone, MapPin } from "lucide-react";
+import { Star, Clock, User, DollarSign, Phone, MapPin, AlertCircle } from "lucide-react";
+import { useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const ServiceProviders = () => {
+  const [showPrototypeAlert, setShowPrototypeAlert] = useState(false);
+
   const serviceProviders = [
     {
       id: 1,
       type: "Electrician",
-      name: "Suresh Jaiswal",
+      name: "Ramesh Kumar",
       age: 28,
       gender: "Male",
       experience: "4 years",
@@ -21,7 +33,7 @@ const ServiceProviders = () => {
     {
       id: 2,
       type: "Plumber",
-      name: "Virat Kohli",
+      name: "Anil Sharma",
       age: 32,
       gender: "Male", 
       experience: "8 years",
@@ -33,7 +45,7 @@ const ServiceProviders = () => {
     {
       id: 3,
       type: "Water Supplier",
-      name: "Mahendra Singh Dhoni",
+      name: "Rajendra Prasad",
       age: 40,
       gender: "Male",
       experience: "12 years", 
@@ -45,7 +57,7 @@ const ServiceProviders = () => {
     {
       id: 4,
       type: "Painter",
-      name: "Cristiano Ronaldo",
+      name: "Vikram Yadav",
       age: 34,
       gender: "Male",
       experience: "8 years",
@@ -57,7 +69,7 @@ const ServiceProviders = () => {
     {
       id: 5,
       type: "Carpenter",
-      name: "Jairaj Singh", 
+      name: "Sunil Verma", 
       age: 31,
       gender: "Male",
       experience: "5 years",
@@ -69,7 +81,7 @@ const ServiceProviders = () => {
     {
       id: 6,
       type: "Maid",
-      name: "Maya Kumari",
+      name: "Sunita Devi",
       age: 32,
       gender: "Female",
       experience: "7 years",
@@ -90,6 +102,10 @@ const ServiceProviders = () => {
       "Maid": "bg-pink-500/10 text-pink-700 border-pink-200",
     };
     return colors[type] || "bg-gray-500/10 text-gray-700 border-gray-200";
+  };
+
+  const handleContactOrBook = () => {
+    setShowPrototypeAlert(true);
   };
 
   return (
@@ -152,11 +168,11 @@ const ServiceProviders = () => {
               </CardContent>
               
               <CardFooter className="pt-4 flex gap-2">
-                <Button className="flex-1" size="sm">
+                <Button className="flex-1" size="sm" onClick={handleContactOrBook}>
                   <Phone className="w-4 h-4 mr-2" />
                   Contact
                 </Button>
-                <Button variant="outline" className="flex-1" size="sm">
+                <Button variant="outline" className="flex-1" size="sm" onClick={handleContactOrBook}>
                   Book Now
                 </Button>
               </CardFooter>
@@ -170,13 +186,31 @@ const ServiceProviders = () => {
           <p className="text-muted-foreground mb-6 max-w-md mx-auto">
             Can't find what you're looking for? Contact us for specialized services and custom requirements.
           </p>
-          <a href="tel:+1234567890">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
-              Request Custom Service
-            </Button>
-          </a>
+          <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={handleContactOrBook}>
+            Request Custom Service
+          </Button>
         </div>
       </div>
+
+      {/* Prototype Alert Dialog */}
+      <AlertDialog open={showPrototypeAlert} onOpenChange={setShowPrototypeAlert}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-orange-500" />
+              Prototype Version
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-base">
+              This website is a prototype for showcase purposes only. Real bookings and contact features are not enabled yet.
+              <br /><br />
+              We will notify you when the original version is released!
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction>Got it!</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
