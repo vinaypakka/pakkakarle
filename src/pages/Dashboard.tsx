@@ -138,22 +138,22 @@ const Dashboard = () => {
             </Card>
           </Link>
 
-          {/* Service Provider */}
+          {/* Contractor */}
           <Link to="/workers">
             <Card className="glass-card hover:border-primary/40 transition-all duration-300 hover:scale-105 h-full">
               <CardHeader className="text-center">
-                <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-secondary/20 flex items-center justify-center">
-                  <Users className="w-6 h-6 text-secondary" />
+                <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-warning/20 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-warning" />
                 </div>
-                <CardTitle className="text-lg">Book Service Provider</CardTitle>
+                <CardTitle className="text-lg">Hire Contractor</CardTitle>
                 <CardDescription>
-                  Connect with verified professionals for your project
+                  Connect with verified contractors for your project
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Button className="w-full" variant="outline">
                   <Users className="w-4 h-4 mr-2" />
-                  Find Workers
+                  Find Contractors
                 </Button>
               </CardContent>
             </Card>

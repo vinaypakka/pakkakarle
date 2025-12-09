@@ -109,7 +109,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section with Role Selection */}
       <section className="py-20 bg-gradient-card">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -120,11 +120,18 @@ const HomePage = () => {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join thousands of homeowners who trust Pakka Karle for their home building and maintenance needs.
           </p>
-          <Link to="/auth">
-            <Button className="btn-hero text-lg px-12 py-6 glow">
-              Start Your Journey <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link to="/signup-landing">
+              <Button className="btn-hero text-lg px-12 py-6 glow">
+                Get Started <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+            <Link to="/auth">
+              <Button variant="outline" className="text-lg px-8 py-6">
+                Already have an account? Sign In
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>;

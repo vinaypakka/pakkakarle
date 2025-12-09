@@ -70,15 +70,15 @@ const SignupLanding = () => {
             </CardContent>
           </Card>
 
-          {/* Partner Card */}
+          {/* Contractor Card */}
           <Card className="glass-card hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 cursor-pointer group border-2 border-transparent hover:border-warning/30">
             <CardHeader className="text-center pb-4">
               <div className="mx-auto mb-6 w-24 h-24 rounded-full bg-gradient-to-br from-warning/10 to-warning/5 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-warning/20 group-hover:to-warning/10 transition-all duration-300">
                 <Wrench className="w-12 h-12 text-warning" />
               </div>
-              <CardTitle className="text-3xl mb-2">Become a Partner</CardTitle>
+              <CardTitle className="text-3xl mb-2">Become a Contractor</CardTitle>
               <CardDescription className="text-base">
-                Join our network of trusted professionals and grow your business
+                Join our network of trusted contractors and grow your business
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -89,7 +89,7 @@ const SignupLanding = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-warning mt-0.5">✓</span>
-                  <span>Manage bookings and payments</span>
+                  <span>Manage projects and payments</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-warning mt-0.5">✓</span>
@@ -97,15 +97,15 @@ const SignupLanding = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-warning mt-0.5">✓</span>
-                  <span>Grow your business with us</span>
+                  <span>Grow your contracting business</span>
                 </li>
               </ul>
               <Button
-                onClick={() => navigate('/auth?role=partner')}
+                onClick={() => navigate('/auth?role=contractor')}
                 className="w-full btn-hero bg-gradient-to-r from-warning to-warning/80 hover:from-warning/90 hover:to-warning/70"
                 size="lg"
               >
-                Join as Partner
+                Join as Contractor
               </Button>
             </CardContent>
           </Card>

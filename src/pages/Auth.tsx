@@ -36,7 +36,7 @@ const AuthPage = () => {
           .eq('id', user.id)
           .single();
         
-        if (profile?.role === 'partner') {
+        if (profile?.role === 'contractor') {
           navigate('/dashboard');
         } else if (profile?.role === 'customer') {
           navigate('/find-service');
@@ -60,8 +60,8 @@ const AuthPage = () => {
     setLoading(true);
 
     try {
-      const redirectUrl = role === 'partner' 
-        ? `${window.location.origin}/partner-onboarding`
+      const redirectUrl = role === 'contractor' 
+        ? `${window.location.origin}/contractor-onboarding`
         : `${window.location.origin}/find-service`;
       
       const { data, error } = await supabase.auth.signUp({
@@ -82,8 +82,8 @@ const AuthPage = () => {
       } else {
         toast.success('Account created successfully!');
         // Redirect based on role
-        if (role === 'partner') {
-          navigate('/partner-onboarding');
+        if (role === 'contractor') {
+          navigate('/contractor-onboarding');
         } else {
           navigate('/find-service');
         }
@@ -117,7 +117,7 @@ const AuthPage = () => {
         
         if (profile?.role === 'customer') {
           navigate('/find-service');
-        } else if (profile?.role === 'partner') {
+        } else if (profile?.role === 'contractor') {
           navigate('/dashboard');
         } else {
           navigate('/dashboard');
@@ -152,7 +152,7 @@ const AuthPage = () => {
         <Card className="glass-card border-primary/20">
           <CardHeader>
             <CardTitle className="text-center">
-              {role === 'customer' ? 'Customer Sign Up' : role === 'partner' ? 'Partner Sign Up' : 'Welcome'}
+              {role === 'customer' ? 'Customer Sign Up' : role === 'contractor' ? 'Contractor Sign Up' : 'Welcome'}
             </CardTitle>
             <CardDescription className="text-center">
               {role ? `Create your ${role} account or sign in` : 'Sign in to your account'}
@@ -252,7 +252,7 @@ const AuthPage = () => {
                       className="bg-background/50"
                     />
                   </div>
-                  {role === 'partner' && (
+                  {role === 'contractor' && (
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="flex items-center gap-2">
                         <Phone className="w-4 h-4" />
