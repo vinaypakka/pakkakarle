@@ -8,38 +8,42 @@ import Navigation from '@/components/Navigation';
 import workersIcon from '@/assets/workers-icon.jpg';
 
 const Workers = () => {
-  const workerCategories = [
+  const contractorCategories = [
     {
       icon: HardHat,
-      title: "Construction Workers",
-      description: "Skilled builders and masons for your construction needs",
-      services: ["Foundation work", "Brick laying", "Concrete work", "General construction"],
+      title: "General Contractors",
+      description: "Full-service contractors for complete home construction projects",
+      services: ["Complete home building", "Renovations", "Extensions", "Project management"],
       rating: 4.8,
-      available: 45
+      available: 45,
+      dummyNames: ["Rajesh Sharma", "Amit Patel", "Vikram Singh"]
     },
     {
       icon: Hammer,
-      title: "Carpenters",
-      description: "Expert woodworkers for custom furniture and fittings",
-      services: ["Custom furniture", "Door & window frames", "Kitchen cabinets", "Interior work"],
+      title: "Interior Contractors",
+      description: "Specialists in interior design and finishing work",
+      services: ["Custom interiors", "Modular kitchens", "False ceilings", "Flooring"],
       rating: 4.9,
-      available: 32
+      available: 32,
+      dummyNames: ["Sunil Verma", "Manoj Kumar", "Deepak Yadav"]
     },
     {
       icon: Paintbrush,
-      title: "Painters",
-      description: "Professional painters for interior and exterior work",
-      services: ["Interior painting", "Exterior painting", "Texture work", "Wall finishing"],
+      title: "Finishing Contractors",
+      description: "Expert contractors for painting and finishing touches",
+      services: ["Interior painting", "Exterior painting", "Texture work", "Wall treatments"],
       rating: 4.7,
-      available: 28
+      available: 28,
+      dummyNames: ["Arun Mishra", "Prakash Joshi", "Sanjay Gupta"]
     },
     {
       icon: Wrench,
-      title: "Specialized Workers",
-      description: "Experts for tiles, plumbing rough work, and more",
-      services: ["Tile installation", "Plumbing rough work", "Electrical rough work", "Flooring"],
+      title: "Specialized Contractors",
+      description: "MEP and specialized trade contractors",
+      services: ["Electrical systems", "Plumbing", "HVAC installation", "Solar panels"],
       rating: 4.8,
-      available: 21
+      available: 21,
+      dummyNames: ["Ramesh Kumar", "Kiran Patil", "Naveen Reddy"]
     }
   ];
 
@@ -78,19 +82,19 @@ const Workers = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-center">
           <Badge className="mb-6 bg-primary/20 text-primary border-primary/30 animate-pulse-glow">
-            👷‍♂️ Verified Professionals
+            🏗️ Verified Contractors
           </Badge>
           
           <h1 className="text-4xl md:text-7xl font-black mb-6 animate-fade-in">
             <span className="bg-gradient-to-r from-primary via-accent to-primary-glow bg-clip-text text-transparent animate-gradient">
-              Expert Workers
+              Expert Contractors
             </span>
             <br />
             <span className="text-foreground">At Your Service</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-fade-in">
-            Connect with verified builders, carpenters, painters, and specialists. 
+            Connect with verified contractors for your construction projects. 
             Quality work guaranteed with transparent pricing and on-time delivery.
           </p>
           
@@ -98,7 +102,7 @@ const Workers = () => {
             <Link to="/service-providers">
               <Button className="btn-hero text-lg px-10 py-6 glow">
                 <Users className="w-5 h-5 mr-2" />
-                Find Workers
+                Find Contractors
               </Button>
             </Link>
             <Link to="/service-providers">
@@ -111,7 +115,7 @@ const Workers = () => {
         </div>
       </section>
 
-      {/* Worker Categories Section */}
+      {/* Contractor Categories Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -120,16 +124,16 @@ const Workers = () => {
             </Badge>
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Skilled Professionals
+                Licensed Contractors
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Choose from our carefully vetted network of construction professionals, each specialized in their trade.
+              Choose from our carefully vetted network of licensed contractors, each specialized in their trade.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
-            {workerCategories.map((category, index) => {
+            {contractorCategories.map((category, index) => {
               const Icon = category.icon;
               
               return (
@@ -154,6 +158,18 @@ const Workers = () => {
                     <p className="text-muted-foreground mb-6 leading-relaxed">
                       {category.description}
                     </p>
+
+                    {/* Dummy Contractor Names */}
+                    <div className="mb-4 p-3 bg-background/30 rounded-lg border border-border/20">
+                      <p className="text-xs text-muted-foreground mb-2">Top contractors:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {category.dummyNames.map((name, nameIndex) => (
+                          <Badge key={nameIndex} variant="secondary" className="text-xs">
+                            {name}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
                     
                     <div className="mb-6">
                       <h4 className="font-semibold text-foreground mb-3">Services Include:</h4>
@@ -186,7 +202,7 @@ const Workers = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-success to-primary bg-clip-text text-transparent">
-                Why Choose Our Workers?
+                Why Choose Our Contractors?
               </span>
             </h2>
           </div>
@@ -220,11 +236,11 @@ const Workers = () => {
             </span>
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Connect with skilled professionals today and get your construction project moving.
+            Connect with licensed contractors today and get your construction project moving.
           </p>
           <Link to="/service-providers">
             <Button className="btn-hero text-lg px-12 py-6 glow">
-              Book Workers Now <ArrowRight className="w-5 h-5 ml-2" />
+              Hire Contractors Now <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
         </div>

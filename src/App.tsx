@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import SignupLanding from "./pages/SignupLanding";
 import PartnerOnboarding from "./pages/PartnerOnboarding";
+import ContractorOnboarding from "./pages/ContractorOnboarding";
 import FindService from "./pages/FindService";
 import Dashboard from "./pages/Dashboard";
 import PrebuiltDesigns from "./pages/PrebuiltDesigns";
@@ -39,6 +40,11 @@ const App = () => (
             <Route path="/partner-onboarding" element={
               <ProtectedRoute>
                 <PartnerOnboarding />
+              </ProtectedRoute>
+            } />
+            <Route path="/contractor-onboarding" element={
+              <ProtectedRoute>
+                <ContractorOnboarding />
               </ProtectedRoute>
             } />
             <Route path="/find-service" element={
